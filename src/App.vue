@@ -3,7 +3,6 @@
   <!-- Don't drop "q-app" class -->
   <div id="q-app">
     <router-view />
-    <Sorter/>
   </div>
 </template>
 

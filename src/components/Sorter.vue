@@ -2,36 +2,30 @@
   <div>
     <div class="container">
       <label for="inputFile">Itens</label>
-      <!-- <input type="text" class="form-control"> -->
-      <textarea name="" id="" cols="30" rows="5" class="form-control" v-model="itensParaSortear"></textarea>
-      <input type="radio" name="tipoSeparacao" id="porVirgula" v-model="virgula">
-      <label for="porVirgula">Separar por vírgula</label>
-      <input type="radio" name="tipoSeparacao" id="porPontoVirgula" v-model="pontoVirgula">
-      <label for="porPontoVirgula">Separar por ponto e vírgula</label>
+      <!-- <textarea name="" id="" cols="30" rows="5" class="form-control" v-model="itensParaSortear"></textarea> -->
+      <q-input v-model="itensParaSortear" type="textarea" float-label="Digite os itens" :max-height="50" :min-rows="2"/>
+      <q-radio type="radio" name="tipoSeparacao" id="porVirgula" v-model="virgula" label="Separar por vírgula" val="opt1"/>
+      <!-- <label for="porVirgula">Separar por vírgula</label> -->
+      <q-radio type="radio" name="tipoSeparacao" id="porPontoVirgula" v-model="virgula" label="Separar por ponto e vírgula" val="opt2"/>
+      <!-- <label for="porPontoVirgula">Separar por ponto e vírgula</label> -->
       <br>
       <div style="text-align: center">
-         <button @click="sortear" class="btn">Sortear</button>
+         <q-btn @click="sortear" class="btn">Sortear</q-btn>
       </div>
       <p style="font-size: 50px; text-align: center">{{ itemSorteado }}</p>
-
-
-      <q-input
-        v-model="area"
-        type="textarea"
-        float-label="Textarea"
-        :max-height="50"
-        :min-rows="1"
-      />
+      <!-- <q-radio v-model="option" val="opt1" label="Option 1" />
+      <q-radio v-model="option" val="opt2" label="Option 2" />
+      <q-radio v-model="option" val="opt3" label="Option 3" /> -->
     </div>
   </div>
 </template>
 
 <script>
 /* eslint-disable */
-import { QInput } from 'quasar'
+import { QInput, QRadio, QBtn } from 'quasar'
 export default {
    name: 'Sorter',
-   components: { QInput },
+   components: { QInput, QRadio, QBtn },
    data: function() {
       return {
          itemSorteado: '',
@@ -39,8 +33,12 @@ export default {
          tipoSeparador: '',
          virgula: false,
          pontoVirgula: false,
-         area: ''
-      }
+         area: '', option: '',       }
+   },
+   props:  {
+       opt1: true,
+       opt2: true,
+       opt3: true
    },
    watch: {
       virgula: function() {
