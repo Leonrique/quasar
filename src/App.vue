@@ -8,13 +8,15 @@
 
 <script>
 /* eslint-disable */
-import Sorter from './components/Sorter.vue'
+/* import Sorter from './components/Sorter.vue'
+import Debts from './components/Debts.vue' */
 /*
  * Root component
  */
 export default {
-   components: { Sorter }
+   components: {  }
 }
 </script>
 
 <style></style>
+

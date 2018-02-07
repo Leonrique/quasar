@@ -18,7 +18,7 @@
         <div slot="subtitle">Running on Quasar v{{$q.version}}</div>
       </q-toolbar-title>
     </q-toolbar>
-
+    
     <div slot="left">
       <!--
         Use <q-side-link> component
@@ -27,22 +27,22 @@
       -->
 
       <q-list no-border link inset-delimiter>
-        <q-list-header>Essential Links</q-list-header>
-        <q-item @click="launch('http://quasar-framework.org')">
+        <q-list-header>Essenciais</q-list-header>
+        <q-item @click="setView(0)">
           <q-item-side icon="school" />
-          <q-item-main label="Docs" sublabel="quasar-framework.org" />
+          <q-item-main label="Sorteador" sublabel="Um sorteador para coisas gerais" />
         </q-item>
-        <q-item @click="launch('http://forum.quasar-framework.org')">
+        <q-item @click="setView(1)">
           <q-item-side icon="record_voice_over" />
-          <q-item-main label="Forum" sublabel="forum.quasar-framework.org" />
+          <q-item-main label="Despesas" sublabel="Onde lançar algumas debts" />
         </q-item>
-        <q-item @click="launch('https://gitter.im/quasarframework/Lobby')">
+        <q-item>
           <q-item-side icon="chat" />
-          <q-item-main label="Gitter Channel" sublabel="Quasar Lobby" />
+          <q-item-main label="Vazio" sublabel="Aceito sugestões para uma função" />
         </q-item>
-        <q-item @click="launch('https://twitter.com/quasarframework')">
+        <q-item>
           <q-item-side icon="rss feed" />
-          <q-item-main label="Twitter" sublabel="@quasarframework" />
+          <q-item-main label="Também vazio" sublabel="Aceito sugestões para uma função" />
         </q-item>
       </q-list>
     </div>
@@ -58,13 +58,18 @@
       </div>
     </div> -->
 
-    <div style="margin: 10px">
+    <div v-if="visao == 0" style="margin: 10px">
       <Sorter/>
+    </div>
+
+    <div v-if="visao == 1" style="margin: 10px">
+      <Debts/>
     </div>
   </q-layout>
 </template>
 
 <script>
+/* eslint-disable */
 import {
   dom,
   event,
@@ -82,6 +87,7 @@ import {
 } from 'quasar'
 
 import Sorter from './Sorter.vue'
+import Debts from './Debts.vue'
 
 const
   { viewport } = dom,
@@ -114,7 +120,7 @@ export default {
     QItem,
     QItemSide,
     QItemMain,
-    Sorter
+    Sorter, Debts
   },
   data () {
     return {
@@ -123,7 +129,7 @@ export default {
       moveX: 0,
       moveY: 0,
       rotateY: 0,
-      rotateX: 0
+      rotateX: 0, visao: 0
     }
   },
   computed: {
@@ -139,6 +145,9 @@ export default {
     }
   },
   methods: {
+    setView: function(view){
+      this.visao = view
+    },
     launch (url) {
       openURL(url)
     },

@@ -19,9 +19,11 @@ let Bootstrap = require('bootstrap') */
 import Vue from 'vue'
 import Quasar from 'quasar'
 import router from './router'
+//let Vuefire = require('vuefire')
 
 Vue.config.productionTip = false
 Vue.use(Quasar) // Install Quasar Framework
+//Vue.use(Vuefire)
 
 if (__THEME === 'mat') {
   require('quasar-extras/roboto-font')
