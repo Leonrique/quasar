@@ -13,3 +13,4 @@ const firebaseApp = firebase.initializeApp(config);
 
 export const db = firebaseApp.database();
 export const usersRef = firebaseApp.database().ref('users');
+export const itensRef = firebaseApp.database().ref('itens');

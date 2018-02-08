@@ -4,7 +4,8 @@
 // 1. use next line to activate CUSTOM STYLE (./src/themes)
 // require(`./themes/app.${__THEME}.styl`)
 // 2. or, use next line to activate DEFAULT QUASAR STYLE
-require(`quasar/dist/quasar.${__THEME}.css`)
+/* require(`quasar-framework/dist/quasar.${__THEME}.css`) */
+require(`quasar-framework/dist/quasar.mat.css`)
 // ==============================
 
 // Uncomment the following lines if you need IE11/Edge support
@@ -33,10 +34,6 @@ import 'quasar-extras/material-icons'
 // import 'quasar-extras/ionicons'
 // import 'quasar-extras/fontawesome'
 // import 'quasar-extras/animate'
-
-/* import 'bootstrap/dist/css/bootstrap.min.css' */
-/* import 'bootstrap/dist/js/bootstrap.min.js' */
-
 Quasar.start(() => {
   /* eslint-disable no-new */
   new Vue({

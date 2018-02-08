@@ -2,11 +2,27 @@
   <div>
     <div class="container">
         <form action="">
-          <q-input v-model="item.nome" type="text" placeholder="Item" value=""></q-input>
-          <q-input v-model="item.valor" type="number" placeholder="Valor" value=0></q-input>
-          <q-btn>Inserir</q-btn>
+          <div class="row">
+            <div class="col-6">
+              <q-input id="inputNome" v-model="item.nome" type="text" placeholder="Item" value=""></q-input>
+            </div>
+
+            <div class="col-6">
+              <q-input id="inputValor" v-model="item.valor" :step=0.01 type="number" placeholder="Valor"></q-input>
+            </div>
+          </div>
+          <q-btn @click="salvarItens">Inserir</q-btn>
         </form>
         
+        <ul is="transition-group">
+          <li v-for="item in itens" class="user" :key="item['.key']">
+            <!-- <q-checkbox v-model="item.selecionado" class="btn"></q-checkbox> -->
+            <span>{{item.nome}} - {{item.valor}}   </span>
+            <a href="#" v-on:click="removeItem(item)">Excluir</a>
+            <!-- <q-btn v-on:click="removeItem(item)" class="btn">Get rid</q-btn> -->
+          </li>
+        </ul>
+
         <form id="form" v-on:submit.prevent="addUser">
           <div class="row">
             <div class="col-3">
@@ -19,7 +35,6 @@
               <q-btn class="btn">Inserir</q-btn>
             </div>
           </div>
-          
         </form>
 
         <ul class="errors">
@@ -33,32 +48,50 @@
             <q-btn v-on:click="removeUser(user)" class="btn">X</q-btn>
           </li>
         </ul>
+
+        <q-select
+          v-model="select"
+          :options="selectOptions"
+        />
+
     </div>
   </div>
 </template>
 
 <script>
 /* eslint-disable */
-import { QInput, QRadio, QBtn } from 'quasar'
-import { db, usersRef } from '../firebase'
+import { QInput, QRadio, QBtn, QCheckbox, QSelect } from 'quasar'
+import { db, usersRef, itensRef } from '../firebase'
 
 var emailRE = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 export default {
    name: 'Debts',
-   components: { QInput, QRadio, QBtn },
+   components: { QInput, QRadio, QBtn, QCheckbox, QSelect },
    data: function() {
       return {
-         item: { nome: '', valor: 0 },
+         select:'',
+         item: { nome: '', valor: 0, selecionado: false },
          newUser: {
             name: '',
             email: ''
-         }
+         },
+         selectOptions: [
+            {
+              label: 'Google',
+              value: 'goog'
+            },
+            {
+              label: 'Facebook',
+              value: 'fb'
+            }
+          ]
       }
    },
    props: {},
    firebase: {
-      users: usersRef
+      users: usersRef,
+      itens: itensRef
    },
    watch: {},
    methods: {
@@ -72,6 +105,12 @@ export default {
       },
       removeUser: function(user) {
          usersRef.child(user['.key']).remove()
+      },
+      removeItem: function(item) {
+         itensRef.child(item['.key']).remove()
+      },
+      salvarItens (){
+        itensRef.push(this.item)
       }
    },
    computed: {
@@ -106,6 +145,23 @@ textarea {
 #input1,
 #input2 {
    width: 80%;
-   margin-right: 25px;
+}
+
+#inputNome,
+#inputValor {
+   width: 80%;
+}
+
+.container {
+    width: 80%;
+    /* height: 100px; */
+
+    position: absolute;
+    /* top:0;
+    bottom: 0; */
+    left: 0;
+    right: 0;
+
+    margin: auto;
 }
 </style>

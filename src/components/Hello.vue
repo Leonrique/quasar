@@ -159,6 +159,7 @@ export default {
    methods: {
       setView: function(view) {
          this.visao = view
+         this.$refs.layout.toggleLeft()
       },
       launch(url) {
          openURL(url)
