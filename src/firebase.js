@@ -1,5 +1,7 @@
 /* eslint-disable */
-var Bancofire = require('firebase');
+var firebase = require('firebase/app');
+require('firebase/auth');
+require('firebase/database');
 
 var config = {
   apiKey: "AIzaSyDE15LTniiNFiEAAIhcXCZw3kqmULI6zVU",
@@ -7,7 +9,7 @@ var config = {
   databaseURL: "https://fir-vue-dad27.firebaseio.com"
 }
 
-const firebaseApp = Bancofire.initializeApp(config);
+const firebaseApp = firebase.initializeApp(config);
 
 export const db = firebaseApp.database();
 export const usersRef = firebaseApp.database().ref('users');

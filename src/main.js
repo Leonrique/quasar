@@ -15,15 +15,16 @@ global.jQuery = jQuery
 global.$ = jQuery
 
 let Bootstrap = require('bootstrap') */
+var Vuefire = require('vuefire')
 
 import Vue from 'vue'
 import Quasar from 'quasar'
 import router from './router'
-//let Vuefire = require('vuefire')
+
 
 Vue.config.productionTip = false
 Vue.use(Quasar) // Install Quasar Framework
-//Vue.use(Vuefire)
+Vue.use(Vuefire)
 
 if (__THEME === 'mat') {
   require('quasar-extras/roboto-font')
