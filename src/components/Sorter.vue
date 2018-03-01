@@ -2,20 +2,43 @@
   <div>
     <div class="container">
       <label for="inputFile">Itens</label>
-      <!-- <textarea name="" id="" cols="30" rows="5" class="form-control" v-model="itensParaSortear"></textarea> -->
+      
       <q-input v-model="itensParaSortear" type="textarea" float-label="Digite os itens" :max-height="50" :min-rows="2"/>
       <q-radio type="radio" name="tipoSeparacao" id="porVirgula" v-model="virgula" label="Separar por vírgula" val="opt1"/>
-      <!-- <label for="porVirgula">Separar por vírgula</label> -->
+      
       <q-radio type="radio" name="tipoSeparacao" id="porPontoVirgula" v-model="virgula" label="Separar por ponto e vírgula" val="opt2"/>
-      <!-- <label for="porPontoVirgula">Separar por ponto e vírgula</label> -->
+      
       <br>
       <div style="text-align: center">
          <q-btn @click="sortear" class="btn">Sortear</q-btn>
       </div>
       <p style="font-size: 50px; text-align: center">{{ itemSorteado }}</p>
-      <!-- <q-radio v-model="option" val="opt1" label="Option 1" />
-      <q-radio v-model="option" val="opt2" label="Option 2" />
-      <q-radio v-model="option" val="opt3" label="Option 3" /> -->
+      
+
+      <div class="row" style="text-align: center">
+        <div class="col-md-2">
+          {{numeros.numero1}}
+        </div>
+        <div class="col-md-2">
+          {{numeros.numero2}}
+        </div>
+        <div class="col-md-2">
+          {{numeros.numero3}}
+        </div>
+        <div class="col-md-2">
+          {{numeros.numero4}}
+        </div>
+        <div class="col-md-2">
+          {{numeros.numero5}}
+        </div>
+        <div class="col-md-2">
+          {{numeros.numero6}}
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 50px">
+         <q-btn @click="sortearNumeros" class="btn">Sortear os Números</q-btn>
+      </div>
     </div>
   </div>
 </template>
@@ -33,12 +56,22 @@ export default {
          tipoSeparador: '',
          virgula: false,
          pontoVirgula: false,
-         area: '', option: '',       }
+         area: '',
+         option: '',
+         numeros: {
+            numero1: 0,
+            numero2: 0,
+            numero3: 0,
+            numero4: 0,
+            numero5: 0,
+            numero6: 0
+         }
+      }
    },
-   props:  {
-       opt1: true,
-       opt2: true,
-       opt3: true
+   props: {
+      opt1: true,
+      opt2: true,
+      opt3: true
    },
    watch: {
       virgula: function() {
@@ -74,6 +107,36 @@ export default {
                vm.itemSorteado =
                   itens[Math.round(Math.random() * (max - min) + min)]
          }, 100)
+      },
+      sortearNumeros: function() {
+         var vm = this
+         var min = 0
+         var max = 59
+
+         var tempo = new Date().getTime() / 1000
+
+         setInterval(function() {
+            if (new Date().getTime() / 1000 - tempo <= 3) {
+               vm.numeros.numero1 = Math.round(
+                  Math.random() * (max - min) + min
+               )
+               vm.numeros.numero2 = Math.round(
+                  Math.random() * (max - min) + min
+               )
+               vm.numeros.numero3 = Math.round(
+                  Math.random() * (max - min) + min
+               )
+               vm.numeros.numero4 = Math.round(
+                  Math.random() * (max - min) + min
+               )
+               vm.numeros.numero5 = Math.round(
+                  Math.random() * (max - min) + min
+               )
+               vm.numeros.numero6 = Math.round(
+                  Math.random() * (max - min) + min
+               )
+            }
+         }, 100)
       }
    }
 }
@@ -90,5 +153,4 @@ button,
 textarea {
    margin: 4px;
 }
-
 </style>

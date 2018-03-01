@@ -53,7 +53,6 @@
           v-model="select"
           :options="selectOptions"
         />
-
     </div>
   </div>
 </template>
@@ -70,7 +69,7 @@ export default {
    components: { QInput, QRadio, QBtn, QCheckbox, QSelect },
    data: function() {
       return {
-         select:'',
+         select: '',
          item: { nome: '', valor: 0, selecionado: false },
          newUser: {
             name: '',
@@ -78,14 +77,14 @@ export default {
          },
          selectOptions: [
             {
-              label: 'Google',
-              value: 'goog'
+               label: 'Google',
+               value: 'goog'
             },
             {
-              label: 'Facebook',
-              value: 'fb'
+               label: 'Facebook',
+               value: 'fb'
             }
-          ]
+         ]
       }
    },
    props: {},
@@ -101,6 +100,8 @@ export default {
 
             this.newUser.name = ''
             this.newUser.email = ''
+
+            console.log(this.users)
          }
       },
       removeUser: function(user) {
@@ -109,8 +110,8 @@ export default {
       removeItem: function(item) {
          itensRef.child(item['.key']).remove()
       },
-      salvarItens (){
-        itensRef.push(this.item)
+      salvarItens() {
+         itensRef.push(this.item)
       }
    },
    computed: {
@@ -153,15 +154,15 @@ textarea {
 }
 
 .container {
-    width: 80%;
-    /* height: 100px; */
+   width: 80%;
+   /* height: 100px; */
 
-    position: absolute;
-    /* top:0;
+   position: absolute;
+   /* top:0;
     bottom: 0; */
-    left: 0;
-    right: 0;
+   left: 0;
+   right: 0;
 
-    margin: auto;
+   margin: auto;
 }
 </style>
