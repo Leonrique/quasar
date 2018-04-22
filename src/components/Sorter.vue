@@ -12,6 +12,7 @@
       <div style="text-align: center">
          <q-btn @click="sortear" class="btn">Sortear</q-btn>
       </div>
+      <br>
       <p style="font-size: 50px; text-align: center">{{ itemSorteado }}</p>
       
 
