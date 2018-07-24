@@ -34,7 +34,7 @@
         </q-item>
         <q-item @click="setView(1)">
           <q-item-side icon="record_voice_over" />
-          <q-item-main label="Despesas" sublabel="Onde lançar algumas debts" />
+          <q-item-main label="Despesas" sublabel="Onde lançar algumas expenses" />
         </q-item>
         <q-item>
           <q-item-side icon="chat" />
@@ -63,7 +63,7 @@
     </div>
 
     <div v-if="visao == 1" style="margin: 10px">
-      <Debts/>
+      <Expenses/>
     </div>
   </q-layout>
 </template>
@@ -87,7 +87,7 @@ import {
 } from 'quasar'
 
 import Sorter from './Sorter.vue'
-import Debts from './Debts.vue'
+import Expenses from './Expenses.vue'
 
 const { viewport } = dom,
    { position } = event,
@@ -128,7 +128,7 @@ export default {
       QItemSide,
       QItemMain,
       Sorter,
-      Debts
+      Expenses
    },
    data() {
       return {
