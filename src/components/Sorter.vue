@@ -15,7 +15,6 @@
       <br>
       <p style="font-size: 50px; text-align: center">{{ itemSorteado }}</p>
       
-
       <div class="row" style="text-align: center">
         <div class="col-md-2">
           {{numeros.numero1}}
@@ -75,12 +74,8 @@ export default {
       opt3: true
    },
    watch: {
-      virgula: function() {
-         this.tipoSeparador = ','
-      },
-      pontoVirgula: function() {
-         this.tipoSeparador = ';'
-      }
+      virgula: () => this.tipoSeparador = ',',
+      pontoVirgula: () =>  this.tipoSeparador = ';'
    },
    methods: {
       sortear: function() {

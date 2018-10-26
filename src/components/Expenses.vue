@@ -49,10 +49,10 @@
           </li>
         </ul>
 
-        <q-select
+        <!-- <q-select
           v-model="select"
           :options="selectOptions"
-        />
+        /> -->
     </div>
   </div>
 </template>
@@ -65,7 +65,7 @@ import { db, usersRef, itensRef } from '../firebase'
 var emailRE = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 export default {
-   name: 'Debts',
+   name: 'Expenses',
    components: { QInput, QRadio, QBtn, QCheckbox, QSelect },
    data: function() {
       return {
@@ -77,12 +77,12 @@ export default {
          },
          selectOptions: [
             {
-               label: 'Google',
-               value: 'goog'
+               label: 'Take a ride',
+               value: 'ride'
             },
             {
-               label: 'Facebook',
-               value: 'fb'
+               label: 'Go by car',
+               value: 'car'
             }
          ]
       }
